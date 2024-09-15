@@ -1,5 +1,5 @@
 @{
-    ViewData["Title"] = "City by Country";
+ViewData["Title"] = "City by Country";
 }
 
 <h1>City DB</h1>
@@ -15,7 +15,7 @@
 
         <div class="col-md-4">
             <div class="form-group">
-                @if (ViewBag.Areas != null)
+                @if (ViewBag.Areas != null && ((SelectList)ViewBag.Areas).Count() > 0)
                 {
                 <select asp-items="ViewBag.Areas" name="AreaId"></select>
                 }
@@ -28,7 +28,7 @@
 
         <div class="col-md-4">
             <div class="form-group">
-                @if (ViewBag.Cities != null)
+                @if (ViewBag.Cities != null && ((SelectList)ViewBag.Cities).Count() > 0)
                 {
                 <select asp-items="ViewBag.Cities" name="CityId"></select>
                 }
@@ -41,26 +41,23 @@
 
         <div class="col-md-4">
             <div class="form-group">
-                <input type="submit"/>
+                <input type="submit" value="Search"/>
             </div>
         </div>
     </div>
-
 </form>
 
 <script>
-
     let frm = document.forms["searchCity"];
 
     frm.elements["CountryId"].onchange = () => {
-        frm.elements["AreaId"].value = null
-        frm.elements["CityId"].value = null
-        frm.submit()
+        frm.elements["AreaId"].value = null;
+        frm.elements["CityId"].value = null;
+        frm.submit();
     }
 
     frm.elements["AreaId"].onchange = () => {
-        frm.elements["CityId"].value = null
-        frm.submit()
+        frm.elements["CityId"].value = null;
+        frm.submit();
     }
-
 </script>
