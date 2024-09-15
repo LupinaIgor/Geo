@@ -29,7 +29,7 @@ namespace WebApplicationGeo111.Data.Migrations
 
                     b.HasIndex("RegionsId");
 
-                    b.ToTable("AreaModelRegionModel");
+                    b.ToTable("AreaModelRegionModel", (string)null);
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRole", b =>
@@ -241,11 +241,14 @@ namespace WebApplicationGeo111.Data.Migrations
                         .IsRequired()
                         .HasColumnType("TEXT");
 
+                    b.Property<int>("RegionCapitalId")
+                        .HasColumnType("INTEGER");
+
                     b.HasKey("Id");
 
                     b.HasIndex("CountryId");
 
-                    b.ToTable("Areas");
+                    b.ToTable("Areas", (string)null);
                 });
 
             modelBuilder.Entity("WebApplicationGeo111.Models.Entities.Geo.CityModel", b =>
@@ -265,7 +268,7 @@ namespace WebApplicationGeo111.Data.Migrations
 
                     b.HasIndex("AreaId");
 
-                    b.ToTable("Cities");
+                    b.ToTable("Cities", (string)null);
                 });
 
             modelBuilder.Entity("WebApplicationGeo111.Models.Entities.Geo.CountryModel", b =>
@@ -286,7 +289,7 @@ namespace WebApplicationGeo111.Data.Migrations
 
                     b.HasIndex("CapitalId");
 
-                    b.ToTable("Countries");
+                    b.ToTable("Countries", (string)null);
                 });
 
             modelBuilder.Entity("WebApplicationGeo111.Models.Entities.Geo.RegionModel", b =>
@@ -301,7 +304,7 @@ namespace WebApplicationGeo111.Data.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("Regions");
+                    b.ToTable("Regions", (string)null);
                 });
 
             modelBuilder.Entity("AreaModelRegionModel", b =>
@@ -386,7 +389,7 @@ namespace WebApplicationGeo111.Data.Migrations
                     b.HasOne("WebApplicationGeo111.Models.Entities.Geo.AreaModel", "Area")
                         .WithMany("Cities")
                         .HasForeignKey("AreaId")
-                        .OnDelete(DeleteBehavior.Cascade)
+                        .OnDelete(DeleteBehavior.Restrict)
                         .IsRequired();
 
                     b.Navigation("Area");

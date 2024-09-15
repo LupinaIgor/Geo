@@ -1,0 +1,38 @@
+﻿@model WebApplicationGeo111.Models.Entities.Geo.CityModel
+
+
+@{
+    ViewData["Title"] = "Информация о городе";
+}
+
+<h2>Информация о городе</h2>
+
+<form asp-action="Index" method="get">
+    <label for="cityName">Введите название города:</label>
+    <input type="text" name="cityName" id="cityName" required />
+    <button type="submit">Поиск</button>
+</form>
+
+@if (ViewBag.Message != null)
+{
+<p>@ViewBag.Message</p>
+}
+
+@if (Model != null)
+{
+    <div>
+        <h3>@Model.Name</h3>  <!-- Отображение названия города -->
+        
+        <p><strong>Область:</strong> @Model.Area?.Name</p>  <!-- Область, связанная с городом -->
+        
+        <p><strong>Страна:</strong> @Model.Area?.Country?.Name</p>  <!-- Страна, связанная с областью -->
+
+        <p><strong>Столица страны:</strong> @Model.Area?.Country?.Capital?.Name</p>  <!-- Столица страны -->
+
+        <p><strong>Региональная столица:</strong> @Model.Area?.RegionCapital?.Name</p>  <!-- Региональная столица -->
+    </div>
+}
+else
+{
+    <p>Город с таким именем не найден.</p>
+}

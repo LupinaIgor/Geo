@@ -1,6 +1,7 @@
 ﻿using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
+using Newtonsoft.Json;
 
 namespace WebApplicationGeo111.Models.Entities.Geo;
 
@@ -17,6 +18,6 @@ public class CountryModel
     public int? CapitalId { get; set; }
     [ForeignKey("CapitalId")]
     public CityModel? Capital { get; set; }
-
+    [JsonIgnore]
     public List<AreaModel> Areas { get; set; } = new List<AreaModel>();
 }
