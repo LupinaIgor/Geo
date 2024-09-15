@@ -15,7 +15,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("WebApplicationGeo111")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+bd07bbe78927ae4eaf1edd9af2d4452d70f9542e")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+24abf2a2c3666156c6bb9c7983b30e5cf64d1f86")]
 [assembly: System.Reflection.AssemblyProductAttribute("WebApplicationGeo111")]
 [assembly: System.Reflection.AssemblyTitleAttribute("WebApplicationGeo111")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

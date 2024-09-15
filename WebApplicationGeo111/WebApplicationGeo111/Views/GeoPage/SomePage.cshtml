@@ -11,51 +11,71 @@
 <div>
     <select id="lstAreas"></select>
 </div>
+<div>
+    <select id="lstCities"></select>
+</div>
 
 <script>
-    
     const lstCountries = document.getElementById("lstCountries");
     const lstAreas = document.getElementById("lstAreas");
-    
+    const lstCities = document.getElementById("lstCities");
+
     function loadCountries() {
         fetch('/api/ApiCountries/')
         .then(res => res.json())
         .then(data => {
-            data.map( c => {
-            console.log(c)
-                let option = document.createElement('option')
-                option.value = c.id
-                option.innerHTML = c.name
-                lstCountries.appendChild(option)
-            })
+            data.map(c => {
+                console.log(c);
+                let option = document.createElement('option');
+                option.value = c.id;
+                option.innerHTML = c.name;
+                lstCountries.appendChild(option);
+            });
         })
         .catch(err => {
-        console.error(err)
-        } )
+            console.error(err);
+        });
     }
-    
+
     loadCountries();
-    
+
     lstCountries.onchange = (ev) => {
-    console.log(ev.clientX)
-    console.log(ev.clientY)
-        let countryId = ev.target.value
-        // let countryId = lstCountries.value 
-        console.log("CountryId = " +  countryId)
+        let countryId = ev.target.value;
+        console.log("CountryId = " + countryId);
         fetch('/api/ApiGetAreaByCountry/' + countryId)
         .then(res => res.json())
         .then(data => {
-            lstAreas.innerHTML = ''
-            data.map( c => {
-                console.log(c)
-                let option = document.createElement('option')
-                option.value = c.id
-                option.innerHTML = c.name
-                lstAreas.appendChild(option)
-            })
+            lstAreas.innerHTML = ''; // Очищаем список областей перед добавлением новых
+            data.map(area => {
+                console.log(area);
+                let option = document.createElement('option');
+                option.value = area.id;
+                option.innerHTML = area.name;
+                lstAreas.appendChild(option);
+            });
         })
+        .catch(err => {
+            console.error(err);
+        });
     }
-    
-    
-    
+
+    lstAreas.onchange = (ev) => {
+        let areaId = ev.target.value;
+        console.log("AreaId = " + areaId);
+        fetch('/api/ApiGetCityByArea/' + areaId)
+        .then(res => res.json())
+        .then(data => {
+            lstCities.innerHTML = ''; // Очищаем список городов перед добавлением новых
+            data.map(city => {
+                console.log(city);
+                let option = document.createElement('option');
+                option.value = city.id;
+                option.innerHTML = city.name;
+                lstCities.appendChild(option);
+            });
+        })
+        .catch(err => {
+            console.error(err);
+        });
+    }
 </script>

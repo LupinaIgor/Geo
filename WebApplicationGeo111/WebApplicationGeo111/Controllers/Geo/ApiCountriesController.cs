@@ -43,7 +43,6 @@ namespace WebApplicationGeo111.Controllers.Geo
         }
 
         // PUT: api/ApiCountries/5
-        // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
         [HttpPut("{id}")]
         public async Task<IActionResult> PutCountryModel(int id, CountryModel countryModel)
         {
@@ -74,7 +73,6 @@ namespace WebApplicationGeo111.Controllers.Geo
         }
 
         // POST: api/ApiCountries
-        // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
         [HttpPost]
         public async Task<ActionResult<CountryModel>> PostCountryModel(CountryModel countryModel)
         {
@@ -103,6 +101,20 @@ namespace WebApplicationGeo111.Controllers.Geo
         private bool CountryModelExists(int id)
         {
             return _context.Countries.Any(e => e.Id == id);
+        }
+
+        // GET: api/ApiGetCityByArea/5
+        [HttpGet("/api/ApiGetCityByArea/{areaId}")]
+        public async Task<ActionResult<IEnumerable<CityModel>>> GetCityByArea(int areaId)
+        {
+            var cities = await _context.Cities.Where(c => c.AreaId == areaId).ToListAsync();
+
+            if (cities == null || cities.Count == 0)
+            {
+                return NotFound();
+            }
+
+            return cities;
         }
     }
 }
